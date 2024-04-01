@@ -1,0 +1,224 @@
+{
+    "spell": [
+        {
+            "name": "Acid Splash",
+            "source": "PHB",
+            "page": 211,
+            "srd": true,
+            "basicRules": true,
+            "level": 0,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "You hurl a bubble of acid. Choose one creature you can see within range, or choose two creatures you can see within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take {@damage 1d6} acid damage.",
+                "This spell's damage increases by {@dice 1d6} when you reach 5th level ({@damage 2d6}), 11th level ({@damage 3d6}), and 17th level ({@damage 4d6})."
+            ],
+            "scalingLevelDice": {
+                "label": "acid damage",
+                "scaling": {
+                    "1": "1d6",
+                    "5": "2d6",
+                    "11": "3d6",
+                    "17": "4d6"
+                }
+            },
+            "damageInflict": [
+                "acid"
+            ],
+            "savingThrow": [
+                "dexterity"
+            ],
+            "miscTags": [
+                "SCL",
+                "SGT"
+            ],
+            "areaTags": [
+                "MT",
+                "ST"
+            ]
+        },
+        {
+            "name": "Aid",
+            "source": "PHB",
+            "page": 211,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 50
+                }
+            ],
+            "level": 2,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a tiny strip of white cloth"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 8
+                    }
+                }
+            ],
+            "entries": [
+                "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "HL"
+            ],
+            "areaTags": [
+                "MT"
+            ]
+        },
+        {
+            "name": "Alarm",
+            "source": "PHB",
+            "page": 211,
+            "srd": true,
+            "level": 1,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "minute"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a tiny bell and a piece of fine silver wire"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 8
+                    }
+                }
+            ],
+            "meta": {
+                "ritual": true
+            },
+            "entries": [
+                "You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is mental or audible.",
+                "A mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping.",
+                "An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet."
+            ],
+            "areaTags": [
+                "C"
+            ]
+        },
+        {
+            "name": "Thaumaturgy",
+            "source": "PHB",
+            "page": 282,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 61
+                }
+            ],
+            "level": 0,
+            "school": "T",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1,
+                        "upTo": true
+                    }
+                }
+            ],
+            "entries": [
+                "You manifest a minor wonder, a sign of supernatural power, within range. You create one of the following magical effects within range:",
+                {
+                    "type": "list",
+                    "items": [
+                        "Your voice booms up to three times as loud as normal for 1 minute.",
+                        "You cause flames to flicker, brighten, dim, or change color for 1 minute.",
+                        "You cause harmless tremors in the ground for 1 minute.",
+                        "You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.",
+                        "You instantaneously cause an unlocked door or window to fly open or slam shut.",
+                        "You alter the appearance of your eyes for 1 minute."
+                    ]
+                },
+                "If you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time, and you can dismiss such an effect as an action."
+            ]
+        }
+    ]
+}
