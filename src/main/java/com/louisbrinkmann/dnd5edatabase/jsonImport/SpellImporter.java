@@ -1,20 +1,18 @@
 package com.louisbrinkmann.dnd5edatabase.jsonImport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.louisbrinkmann.dnd5edatabase.models.Spell;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
-public class SpellImporter implements JsonImporter {
+public class SpellImporter {
 
-    @Override
-    public void importFile(File file) {
+    public Spell[] importFile(File file) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            Map<?,?> map = objectMapper.readValue(file, Map.class);
+            return objectMapper.readValue(file, Spell[].class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-}
+    }}
