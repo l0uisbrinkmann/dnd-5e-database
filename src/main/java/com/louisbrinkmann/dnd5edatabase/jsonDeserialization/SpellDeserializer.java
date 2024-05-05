@@ -40,10 +40,12 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
                 .source(getSource(rootNode))
                 .level(level)
                 .school(getSchoolOfMagic(rootNode))
+                .ritual(getRitual(rootNode))
                 .castingTime(getCastingTime(rootNode))
                 .castingRange(getCastingRange(rootNode))
                 .components(getComponents(rootNode))
                 .effectDuration(getEffectDuration(rootNode))
+                .concentration(getConcentration(rootNode))
                 .entries(getEntries(rootNode))
                 .damageTypes(getDamageTypes(rootNode))
                 .savingThrow(getSavingThrow(rootNode))
@@ -59,6 +61,10 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
 
     private SchoolOfMagic getSchoolOfMagic(JsonNode node) {
         return new SchoolOfMagic(node.get("school").asText());
+    }
+
+    private boolean getRitual(JsonNode rootNode) {
+        return rootNode.has("meta") && rootNode.get("meta").has("ritual") && rootNode.get("meta").get("ritual").asBoolean();
     }
 
     private Duration getCastingTime(JsonNode node) {
@@ -99,6 +105,12 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
             return new Duration(new DurationType(duration.get("type").asText()), duration.get("amount").asInt());
         }
         return new Duration(new DurationType(duration.get("type").asText()), null);
+    }
+
+    private boolean getConcentration(JsonNode rootNode) {
+        ArrayNode durationArray = (ArrayNode) rootNode.get("duration");
+        JsonNode duration = durationArray.get(0);
+        return duration.has("concentration") && duration.get("concentration").asBoolean();
     }
 
     private List<String> getEntries(JsonNode rootNode) {

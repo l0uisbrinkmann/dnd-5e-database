@@ -32,6 +32,8 @@ public class Spell implements Model {
     @JoinColumn(referencedColumnName = "id")
     private SchoolOfMagic school;
 
+    private boolean ritual;
+
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Duration castingTime;
@@ -48,6 +50,8 @@ public class Spell implements Model {
     @JoinColumn(referencedColumnName = "id")
     private Duration effectDuration;
 
+    private boolean concentration;
+
     private List<String> entries;
 
     @ManyToMany
@@ -57,9 +61,4 @@ public class Spell implements Model {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private SavingThrow savingThrow;
-
-    public Spell(String name, Source source) {
-        this.name = name;
-        this.source = source;
-    }
 }
