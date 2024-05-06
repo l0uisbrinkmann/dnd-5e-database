@@ -88,11 +88,11 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
     private Components getComponents(JsonNode node) {
         JsonNode components = node.get("components");
         boolean verbal = components.has("v") && components.get("v").asBoolean();
-        boolean semantic = components.has("s") && components.get("s").asBoolean();
+        boolean somatic = components.has("s") && components.get("s").asBoolean();
         if (components.has("m")) {
-            return new Components(verbal, semantic, components.get("m").asText());
+            return new Components(verbal, somatic, components.get("m").asText());
         }
-        return new Components(verbal, semantic, null);
+        return new Components(verbal, somatic, null);
     }
 
     private Duration getEffectDuration(JsonNode rootNode) {

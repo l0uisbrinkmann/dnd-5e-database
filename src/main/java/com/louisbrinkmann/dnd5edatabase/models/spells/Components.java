@@ -20,13 +20,13 @@ public class Components implements Model {
 
     private Boolean verbal;
 
-    private Boolean semantic;
+    private Boolean somatic;
 
     private String material;
 
-    public Components(Boolean verbal, Boolean semantic, String material) {
+    public Components(Boolean verbal, Boolean somatic, String material) {
         this.verbal = verbal;
-        this.semantic = semantic;
+        this.somatic = somatic;
         this.material = material;
     }
 }
