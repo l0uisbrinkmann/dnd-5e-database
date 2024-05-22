@@ -1,17 +1,16 @@
 package com.louisbrinkmann.dnd5edatabase.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Spell {
@@ -23,13 +22,16 @@ public class Spell {
     private SchoolOfMagic schoolOfMagic;
     private String castingTime;
     private String range;
-    private Boolean verbal;
-    private Boolean somatic;
-    private String material;
+    private Boolean verbal = false;
+    private Boolean somatic = false;
+    private String material = "";
     private String duration;
-    private Boolean concentration;
+    private Boolean concentration = false;
+    @Lob
     private String description;
+    @Lob
     private String higherLevelDescription;
     private List<RAWClass> classes;
+    @ManyToOne
     private Source source;
 }

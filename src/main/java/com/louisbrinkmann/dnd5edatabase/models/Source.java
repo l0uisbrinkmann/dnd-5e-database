@@ -6,10 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Source {
@@ -19,4 +20,8 @@ public class Source {
     private SourceBook book;
     private Integer page;
 
+    public Source(SourceBook book, Integer page) {
+        this.book = book;
+        this.page = page;
+    }
 }

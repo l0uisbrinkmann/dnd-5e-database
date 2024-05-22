@@ -1,10 +1,7 @@
 package com.louisbrinkmann.dnd5edatabase;
-import com.louisbrinkmann.dnd5edatabase.json.JS2JPGenerator;
-import com.louisbrinkmann.dnd5edatabase.json.JacksonDeserializer;
-//import com.louisbrinkmann.dnd5edatabase.models.spells.Spell;
-//import com.louisbrinkmann.dnd5edatabase.models.spells.Spells;
-//import com.louisbrinkmann.dnd5edatabase.repositories.SpellRepository;
-import com.sun.codemodel.JCodeModel;
+import com.louisbrinkmann.dnd5edatabase.models.*;
+import com.louisbrinkmann.dnd5edatabase.repositories.SpellRepository;
+import com.louisbrinkmann.dnd5edatabase.services.SpellService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,36 +9,42 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 @EnableJpaRepositories
 @Slf4j
 public class Dnd5eDatabaseApplication {
-//	private static SpellRepository spellRepository;
-//
-//	@Autowired
-//	public Dnd5eDatabaseApplication(SpellRepository spellRepository) {
-//		this.spellRepository = spellRepository;
-//	}
+	private static SpellService spellService;
+
+	@Autowired
+	public Dnd5eDatabaseApplication(SpellService spellService) {
+		this.spellService = spellService;
+	}
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Dnd5eDatabaseApplication.class, args);
-		JCodeModel codeModel = new JCodeModel();
-		URL jsonSpells = new File("./src/main/resources/schemas/spells/spells.json").toURI().toURL();
-		File targetClassDirectory = new File("./src/main/java");
-		JS2JPGenerator.generatePojosForSchema(jsonSpells, targetClassDirectory, "com.louisbrinkmann.dnd5edatabase.models.spells","Spells");
-//		File phbSpellsFile = new File("./src/main/resources/data/spells/spells-phb.json");
-//		JacksonDeserializer<Spells> spellsDeserializer = new JacksonDeserializer<>();
-//		Set<Spell> phbSpells = spellsDeserializer.deserialize(phbSpellsFile, Spells.class).getSpell();
-//		spellRepository.saveAll(phbSpells);
-//		List<Spell> retrievedSpells = spellRepository.findAll();
-//		log.info("Spells retrieved from the database:");
-//		for(Spell spell : retrievedSpells){
-//			log.info(spell.getName());
-//		}
+		Source phbSource = new Source(SourceBook.PLAYERS_HANDBOOK, 150);
+		Spell fireBall = Spell.builder()
+				.name("Fireball")
+				.level(3)
+				.schoolOfMagic(SchoolOfMagic.EVOCATION)
+				.castingTime("1 action")
+				.range("150 feet")
+				.verbal(true)
+				.somatic(true)
+				.material("a tiny ball of bat guano and sulfur")
+				.duration("Instantaneous")
+				.description("A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n" +
+						"The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.")
+				.higherLevelDescription("When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.")
+				.classes(List.of(RAWClass.SORCERER, RAWClass.WIZARD))
+				.source(phbSource)
+				.build();
+		spellService.save(fireBall);
+		List<Spell> spells = spellService.findAll();
+		for(Spell s : spells){
+			System.out.println(s.getName());
+		}
 	}
 }
