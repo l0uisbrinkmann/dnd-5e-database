@@ -21,7 +21,6 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
 
     @Override
     public Spell deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
-        // TODO: Check for existence of node for anything that isn't defined as required in the Spell schema.
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         Spell.SpellBuilder spellBuilder = Spell.builder();
 
