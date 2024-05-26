@@ -17,10 +17,10 @@ public class Source {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private SourceBook book;
+    private String book;
     private Integer page;
 
-    public Source(SourceBook book, Integer page) {
+    public Source(String book, Integer page) {
         this.book = book;
         this.page = page;
     }
