@@ -48,7 +48,7 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
         }
 
         if(node.get("duration").get(0).has("concentration")){
-            spellBuilder.concentration(node.get("duration").get("concentration").asBoolean());
+            spellBuilder.concentration(node.get("duration").get(0).get("concentration").asBoolean());
         }
 
         return spellBuilder.build();
