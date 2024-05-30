@@ -21,7 +21,7 @@ public class Spell {
     @NotNull
     private Integer level;
     @Builder.Default
-    private boolean srd = false;
+    private Boolean srd = false;
     @NotNull
     private SchoolOfMagic schoolOfMagic;
     @NotNull

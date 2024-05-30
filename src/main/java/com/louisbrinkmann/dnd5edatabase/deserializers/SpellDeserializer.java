@@ -20,7 +20,7 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
     }
 
     @Override
-    public Spell deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
+    public Spell deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         Spell.SpellBuilder spellBuilder = Spell.builder();
 

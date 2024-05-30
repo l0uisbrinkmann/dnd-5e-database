@@ -26,7 +26,7 @@ public class SpellCollectionDeserializer extends StdDeserializer<SpellCollection
     }
 
     @Override
-    public SpellCollection deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
+    public SpellCollection deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         List<Spell> spells = new ArrayList<>();
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         JsonNode spellArray = node.get("spell");
