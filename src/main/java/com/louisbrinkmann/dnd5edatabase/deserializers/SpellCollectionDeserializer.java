@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.louisbrinkmann.dnd5edatabase.models.Spell;
-import com.louisbrinkmann.dnd5edatabase.models.SpellCollection;
+import com.louisbrinkmann.dnd5edatabase.models.spells.Spell;
+import com.louisbrinkmann.dnd5edatabase.models.spells.SpellCollection;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

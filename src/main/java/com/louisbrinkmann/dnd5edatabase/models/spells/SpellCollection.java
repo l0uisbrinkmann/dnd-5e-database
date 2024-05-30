@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.models;
+package com.louisbrinkmann.dnd5edatabase.models.spells;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

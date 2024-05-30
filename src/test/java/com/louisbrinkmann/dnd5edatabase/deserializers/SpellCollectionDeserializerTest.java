@@ -2,8 +2,8 @@ package com.louisbrinkmann.dnd5edatabase.deserializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.louisbrinkmann.dnd5edatabase.models.Spell;
-import com.louisbrinkmann.dnd5edatabase.models.SpellCollection;
+import com.louisbrinkmann.dnd5edatabase.models.spells.Spell;
+import com.louisbrinkmann.dnd5edatabase.models.spells.SpellCollection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +24,16 @@ class SpellCollectionDeserializerTest {
     @Test
     void shouldDeserializeSpellsCorrectly() throws IOException {
         // Arrange
+        File phbSpells = new File("./src/test/resources/data/spells/spells-phb.json");
+
+
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addDeserializer(SpellCollection.class, spellCollectionDeserializer);
         objectMapper.registerModule(simpleModule);
 
         // Act
-        SpellCollection spellCollection = objectMapper.readValue(new File("./src/test/resources/data/spells/spells-phb.json"), SpellCollection.class);
+        SpellCollection spellCollection = objectMapper.readValue(phbSpells, SpellCollection.class);
         List<Spell> spells = spellCollection.getSpells();
 
         // Assert

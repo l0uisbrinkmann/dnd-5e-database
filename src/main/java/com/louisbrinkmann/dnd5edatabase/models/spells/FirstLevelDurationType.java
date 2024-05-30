@@ -1,6 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.models;
-
-import lombok.Getter;
+package com.louisbrinkmann.dnd5edatabase.models.spells;
 
 public enum FirstLevelDurationType {
     INSTANT(),

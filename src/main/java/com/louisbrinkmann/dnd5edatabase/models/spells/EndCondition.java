@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.models;
+package com.louisbrinkmann.dnd5edatabase.models.spells;
 
 public enum EndCondition {
     DISPEL(),

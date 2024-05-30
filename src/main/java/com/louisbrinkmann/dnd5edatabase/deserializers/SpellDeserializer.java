@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.louisbrinkmann.dnd5edatabase.models.*;
+import com.louisbrinkmann.dnd5edatabase.models.spells.*;
 
 import java.io.IOException;
 
@@ -49,6 +49,14 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
 
         if(node.get("duration").get(0).has("concentration")){
             spellBuilder.concentration(node.get("duration").get(0).get("concentration").asBoolean());
+        }
+
+        if(node.has("entriesHigherLevel")){
+            spellBuilder.higherLevelDescription(determineHigherLevelDescription(node.get("entriesHigherLevel")));
+        }
+
+        if(node.has("srd")){
+            spellBuilder.srd(node.get("srd").asBoolean());
         }
 
         return spellBuilder.build();
@@ -129,12 +137,14 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
 
     String determineHigherLevelDescription(JsonNode node) {
         StringBuilder higherLevelDescription = new StringBuilder();
-        JsonNode entries = node.get("entries");
-        for (int i = 0; i < entries.size(); i++) {
-            higherLevelDescription.append(entries.get(i));
-            if (i < entries.size() - 1) {
-                higherLevelDescription.append(System.lineSeparator());
-                higherLevelDescription.append(System.lineSeparator());
+        for(int i = 0; i < node.size(); i++){
+            JsonNode entries = node.get(i).get("entries");
+            for (int j = 0; j < entries.size(); j++) {
+                higherLevelDescription.append(entries.get(j).asText());
+                if (j < entries.size() - 1) {
+                    higherLevelDescription.append(System.lineSeparator());
+                    higherLevelDescription.append(System.lineSeparator());
+                }
             }
         }
         return higherLevelDescription.toString();

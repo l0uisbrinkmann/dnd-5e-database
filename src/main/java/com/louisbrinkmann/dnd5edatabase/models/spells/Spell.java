@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.models;
+package com.louisbrinkmann.dnd5edatabase.models.spells;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Builder
@@ -22,6 +20,8 @@ public class Spell {
     private String name;
     @NotNull
     private Integer level;
+    @Builder.Default
+    private boolean srd = false;
     @NotNull
     private SchoolOfMagic schoolOfMagic;
     @NotNull

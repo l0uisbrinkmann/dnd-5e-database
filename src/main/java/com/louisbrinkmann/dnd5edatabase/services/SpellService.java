@@ -1,6 +1,6 @@
 package com.louisbrinkmann.dnd5edatabase.services;
 
-import com.louisbrinkmann.dnd5edatabase.models.Spell;
+import com.louisbrinkmann.dnd5edatabase.models.spells.Spell;
 import com.louisbrinkmann.dnd5edatabase.repositories.SourceRepository;
 import com.louisbrinkmann.dnd5edatabase.repositories.SpellRepository;
 import lombok.extern.slf4j.Slf4j;

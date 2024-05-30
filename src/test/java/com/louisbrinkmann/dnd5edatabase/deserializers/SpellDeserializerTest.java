@@ -1,9 +1,8 @@
 package com.louisbrinkmann.dnd5edatabase.deserializers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.louisbrinkmann.dnd5edatabase.models.Spell;
+import com.louisbrinkmann.dnd5edatabase.models.spells.Spell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
