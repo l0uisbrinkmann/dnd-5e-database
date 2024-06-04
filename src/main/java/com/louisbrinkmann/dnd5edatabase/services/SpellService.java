@@ -21,12 +21,22 @@ public class SpellService {
         try{
             sourceRepository.save(spell.getSource());
         } catch (Exception e){
-            log.warn("Could not save source " + spell.getSource().toString(), e);
+            log.warn("Could not save source " + spell.getSource().getBook() + " page " + spell.getSource().getPage(), e);
         }
         try{
             spellRepository.save(spell);
         } catch (Exception e){
-            throw new RuntimeException("Could not save spell " + spell.toString());
+            throw new RuntimeException("Could not save spell " + spell.getName());
+        }
+    }
+
+    public void saveAll(List<Spell> spells){
+        for(Spell s : spells){
+            try{
+                save(s);
+            } catch (RuntimeException e){
+                log.warn("Could not save spell " + s.getName());
+            }
         }
     }
 

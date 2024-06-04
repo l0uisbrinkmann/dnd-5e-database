@@ -17,6 +17,7 @@ public class Spell {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
+    @Column(unique = true)
     private String name;
     @NotNull
     private Integer level;

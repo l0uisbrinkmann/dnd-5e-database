@@ -6,9 +6,11 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.louisbrinkmann.dnd5edatabase.models.spells.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class SpellDeserializer extends StdDeserializer<Spell> {
 
     public SpellDeserializer() {
@@ -31,8 +33,22 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
                 .castingTime(node.get("time").get(0).get("number").asText() + " " + node.get("time").get(0).get("unit").asText())
                 .range(determineRange(node.get("range")))
                 .duration(determineDuration(node.get("duration").get(0)))
-                .description(determineDescription(node.get("entries")))
-                .source(new Source(node.get("source").asText(), node.get("page").asInt()));
+                .description(determineDescription(node.get("entries")));
+
+        Source source = new Source();
+        if(node.has("source")){
+            source.setBook(node.get("source").asText());
+        } else {
+            source.setBook(null);
+            log.warn("Spell {} did not provide a source.", node.get("name").asText());
+        }
+        if(node.has("page")){
+            source.setPage(node.get("page").asInt());
+        } else {
+            source.setPage(null);
+            log.warn("Spell {} did not provide a page.", node.get("name").asText());
+        }
+        spellBuilder.source(source);
 
         if (node.has("components")) {
             JsonNode components = node.get("components");
