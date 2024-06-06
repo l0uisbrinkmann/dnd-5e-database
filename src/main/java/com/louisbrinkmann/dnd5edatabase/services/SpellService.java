@@ -43,4 +43,8 @@ public class SpellService {
     public List<Spell> findAll(){
         return spellRepository.findAll();
     }
+
+    public Spell findByName(String name){
+        return spellRepository.findByName(name);
+    }
 }

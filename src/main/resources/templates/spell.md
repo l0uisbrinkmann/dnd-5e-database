@@ -16,4 +16,5 @@ source: [# th:if="${spell.source.book.name != null}"][(${spell.source.book.name}
 # [(${spell.name})][# th:each="entry: ${spell.entries}"]
 [(${entry})]
 
-[/]**At higher levels:** 
+[/][# th:if="${spell.higherLevelDescription != null}"]**At higher levels:** 
+[(${spell.higherLevelDescription})][/]

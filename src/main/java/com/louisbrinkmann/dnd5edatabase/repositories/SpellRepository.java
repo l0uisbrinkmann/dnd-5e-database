@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SpellRepository extends JpaRepository<Spell, Integer> {
+    public Spell findByName(String name);
 }
