@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.deserializers;
+package com.louisbrinkmann.dnd5edatabase.jsonDeserializers;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;

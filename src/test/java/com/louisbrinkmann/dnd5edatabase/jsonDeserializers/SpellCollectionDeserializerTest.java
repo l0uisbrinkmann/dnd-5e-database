@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.deserializers;
+package com.louisbrinkmann.dnd5edatabase.jsonDeserializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -24,7 +24,7 @@ class SpellCollectionDeserializerTest {
     @Test
     void shouldDeserializeSpellsCorrectly() throws IOException {
         // Arrange
-        File phbSpells = new File("./src/test/resources/data/spells/spells-phb.json");
+        File phbSpells = new File("./src/test/resources/data/spells/spellDirectory/spells-phb.json");
 
 
         ObjectMapper objectMapper = new ObjectMapper();

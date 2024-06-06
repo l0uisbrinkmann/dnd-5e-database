@@ -1,4 +1,4 @@
-package com.louisbrinkmann.dnd5edatabase.deserializers;
+package com.louisbrinkmann.dnd5edatabase.jsonDeserializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
