@@ -66,6 +66,10 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
             spellBuilder.concentration(node.get("duration").get(0).get("concentration").asBoolean());
         }
 
+        if(node.has("meta") && node.get("meta").has("ritual")){
+            spellBuilder.ritual(node.get("meta").get("ritual").asBoolean());
+        }
+
         if(node.has("entriesHigherLevel")){
             spellBuilder.higherLevelDescription(determineHigherLevelDescription(node.get("entriesHigherLevel")));
         }
@@ -105,7 +109,7 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
     }
 
     String determineDuration(JsonNode node) {
-        String duration = "";
+        StringBuilder duration = new StringBuilder();
         FirstLevelDurationType firstLevelDurationType = FirstLevelDurationType.valueOf(node.get("type").asText().toUpperCase());
         if (!firstLevelDurationType.name().equalsIgnoreCase("timed")) {
             switch (firstLevelDurationType.name().toLowerCase()) {
@@ -123,19 +127,20 @@ public class SpellDeserializer extends StdDeserializer<Spell> {
                             endConditions.append(", ").append(node.get("ends").get(i));
                         }
                     }
-                    duration = endConditions.toString();
+                    duration = endConditions;
                     break;
             }
         } else {
             SecondLevelDurationType secondLevelDurationType = SecondLevelDurationType.valueOf(node.get("duration").get("type").asText().toUpperCase());
-            duration += node.get("duration").get("amount").asText();
+            duration.append(node.get("duration").get("amount").asText());
+            duration.append(" ");
             if (node.get("duration").get("amount").asInt() == 1) {
-                duration += secondLevelDurationType.name().toLowerCase();
+                duration.append(secondLevelDurationType.name().toLowerCase());
             } else {
-                duration += secondLevelDurationType.getPlural();
+                duration.append(secondLevelDurationType.getPlural());
             }
         }
-        return duration;
+        return duration.toString();
     }
 
     String determineDescription(JsonNode node) {

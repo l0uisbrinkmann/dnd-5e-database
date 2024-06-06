@@ -37,12 +37,11 @@ public class SpellWriter {
         templateResolver.setSuffix(".md");
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
-        File outputDirectory = new File(System.getProperty("user.home") + "/repos/dnd-5e-obsidian-wiki/wiki");
         String fileName = spell.getName();
         if(fileName.contains("/")){
             fileName = fileName.replace("/", " - ");
         }
-        File outputFile = new File(outputDirectory, fileName + ".md");
+        File outputFile = new File(targetDirectory, fileName + ".md");
         outputFile.createNewFile();
         Writer writer = new FileWriter(outputFile);
         templateEngine.process("spell", context, writer);

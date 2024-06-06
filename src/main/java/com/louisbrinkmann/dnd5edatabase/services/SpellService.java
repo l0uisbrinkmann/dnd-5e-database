@@ -40,11 +40,34 @@ public class SpellService {
         }
     }
 
+    public void updateOrInsertAll(List<Spell> spells){
+        for(Spell s : spells){
+            try{
+                sourceRepository.save(s.getSource());
+            } catch (Exception e){
+                log.warn("Could not save source {} page {}", s.getSource().getBook(), s.getSource().getPage(), e);
+            }
+            try{
+                updateOrInsert(s);
+            } catch (Exception e){
+                log.warn("Could not save nor update spell {}.", s.getName());
+            }
+        }
+    }
+
+    public void updateOrInsert(Spell spell){
+        spellRepository.updateOrInsert(spell);
+    }
+
     public List<Spell> findAll(){
         return spellRepository.findAll();
     }
 
     public Spell findByName(String name){
         return spellRepository.findByName(name);
+    }
+
+    public void deleteAll(){
+        spellRepository.deleteAll();
     }
 }

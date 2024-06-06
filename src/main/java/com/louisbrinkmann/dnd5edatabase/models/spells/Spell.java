@@ -2,14 +2,12 @@ package com.louisbrinkmann.dnd5edatabase.models.spells;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Spell {
@@ -36,6 +34,8 @@ public class Spell {
     private String material;
     @NotNull
     private String duration;
+    @Builder.Default
+    private Boolean ritual = false;
     @Builder.Default
     private Boolean concentration = false;
     @Lob
